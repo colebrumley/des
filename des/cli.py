@@ -9,7 +9,7 @@ from des.watcher import Watcher
 
 
 def main():
-    """Enter here"""
+    """Main CLI entrypoint for des"""
     args = parser.parse_args()
 
     if args.verbose:
