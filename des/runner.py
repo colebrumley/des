@@ -1,9 +1,10 @@
 """Script Runner class"""
 
-from subprocess import STDOUT, check_output
-from des.log import GLOBAL_LOGGER as logger
-from socket import gethostname
 import os
+from subprocess import STDOUT, check_output
+
+from des.log import GLOBAL_LOGGER as logger
+
 
 class ScriptRunner(object):
     """Executes a script, passing event details via the ENV"""
@@ -13,9 +14,9 @@ class ScriptRunner(object):
 
     def run(self, event_dict):
         """Handle a docker event"""
-        attribs = event_dict['Actor']['Attributes']
 
-        script = self.basedir + os.path.sep + event_dict['Type'] + os.path.sep + event_dict['Action']
+        script = self.basedir + os.path.sep + event_dict['Type'] + \
+                 os.path.sep + event_dict['Action']
         if os.path.exists(script):
             logger.debug('Running script ' + script)
             result = check_output(
