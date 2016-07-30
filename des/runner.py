@@ -21,12 +21,7 @@ class ScriptRunner(object):
             result = check_output(
                 script,
                 stderr=STDOUT,
-                env=dict(
-                    CONTAINER_ID=event_dict.get('id', '')[:12],
-                    CONTAINER_NAME=attribs.get('name', ''),
-                    CONTAINER_IMAGE=attribs.get('image', ''),
-                    NODE_HOSTNAME=gethostname(),
-                    )
+                env=event_dict
                 )
             return str(result)
         else:
