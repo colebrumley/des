@@ -14,7 +14,6 @@ class ScriptRunner(object):
     def run(self, event_dict):
         """Handle a docker event"""
         attribs = event_dict['Actor']['Attributes']
-        short_id = event_dict.get('id', '000000000000')[:12]
 
         script = self.basedir + os.path.sep + event_dict['Type'] + os.path.sep + event_dict['Action']
         if os.path.exists(script):
@@ -23,9 +22,9 @@ class ScriptRunner(object):
                 script,
                 stderr=STDOUT,
                 env=dict(
-                    CONTAINER_ID=short_id,
-                    CONTAINER_NAME=attribs['name'],
-                    CONTAINER_IMAGE=attribs['image'],
+                    CONTAINER_ID=event_dict.get('id', '')[:12],
+                    CONTAINER_NAME=attribs.get('name', ''),
+                    CONTAINER_IMAGE=attribs.get('image', ''),
                     NODE_HOSTNAME=gethostname(),
                     )
                 )
