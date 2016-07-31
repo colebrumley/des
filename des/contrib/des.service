@@ -1,0 +1,11 @@
+[Unit]
+Description=Docker Event Scripts
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/des -d /etc/docker/events.d
+
+[Install]
+WantedBy=multi-user.target
