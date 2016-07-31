@@ -1,10 +1,10 @@
 """Watcher Class definition"""
 
+import os
 from datetime import datetime
 
 # from docker import Client
 import docker
-import os
 from des.log import GLOBAL_LOGGER as logger
 
 
@@ -63,4 +63,4 @@ class Watcher(object):
                     logger.debug("SCRIPT OUTPUT: " + str(output))
             except RuntimeError as err:
                 logger.error('Failed to execute task in reponse to "' +
-                                event_key + '" :' + str(err))
+                             event_key + '" :' + str(err))
