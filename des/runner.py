@@ -29,7 +29,7 @@ class ScriptRunner(object):
         """Handle a docker event"""
 
         script = self.basedir + os.path.sep + event_dict['Type'] + \
-                 os.path.sep + event_dict['Action']
+                 os.path.sep + str(event_dict['Action']).split(':')[0]
         if os.path.exists(script):
             env_dict = dict()
             flat_event = flatten(event_dict)
