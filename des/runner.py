@@ -1,9 +1,22 @@
 """Script Runner class"""
 
 import os
+import collections
 from subprocess import STDOUT, check_output
 
 from des.log import GLOBAL_LOGGER as logger
+
+
+def flatten(parent_dict, parent_key='', sep='_'):
+    '''Flatten a nested dict into a single layer'''
+    items = []
+    for key, val in parent_dict.items():
+        new_key = parent_key + sep + key if parent_key else key
+        if isinstance(val, collections.MutableMapping):
+            items.extend(flatten(val, new_key, sep=sep).items())
+        else:
+            items.append((new_key, val))
+    return dict(items)
 
 
 class ScriptRunner(object):
@@ -18,11 +31,16 @@ class ScriptRunner(object):
         script = self.basedir + os.path.sep + event_dict['Type'] + \
                  os.path.sep + event_dict['Action']
         if os.path.exists(script):
-            logger.debug('Running script ' + script)
+            env_dict = dict()
+            flat_event = flatten(event_dict)
+            for key, val in flat_event.items():
+                env_dict[str(key).upper()] = str(val)
+            logger.info('Running script ' + script)
+            logger.debug('Script ENV: ' + str(env_dict))
             result = check_output(
                 script,
                 stderr=STDOUT,
-                env=event_dict
+                env=env_dict
                 )
             return str(result)
         else:
