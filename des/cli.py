@@ -23,6 +23,7 @@ def create_dirs(basedir):
             logger.info('Creating script '+ event_path)
             if not path.exists(event_path):
                 with open(event_path, mode='x') as fh:
+                    fh.write('#!/bin/sh\n')
                     fh.close()
                     chmod(event_path, 0o777)
 
