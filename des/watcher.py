@@ -64,7 +64,3 @@ class Watcher(object):
             except RuntimeError as err:
                 logger.error('Failed to execute task in reponse to "' +
                                 event_key + '" :' + str(err))
-
-    def anotherfuncname(self, parameter_list):
-        """Just to make the linter shut up"""
-        raise NotImplementedError

@@ -45,7 +45,3 @@ class ScriptRunner(object):
             return str(result)
         else:
             logger.warning('Unable to handle event! No script exists at ' + script)
-
-    def anotherfuncname(self, parameter_list):
-        """Just to make the linter shut up"""
-        raise NotImplementedError
