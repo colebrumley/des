@@ -9,6 +9,12 @@ ARGPARSER = ArgumentParser(
 ARGPARSER.version = __version__
 
 ARGPARSER.add_argument(
+    '-c',
+    dest='create',
+    action='store_true',
+    help='Create script dir structure and exit')
+
+ARGPARSER.add_argument(
     '-e',
     dest='docker_url',
     action='store',
