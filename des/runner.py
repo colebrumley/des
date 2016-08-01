@@ -2,7 +2,7 @@
 
 import os
 import collections
-from subprocess import STDOUT, check_output
+from subprocess import STDOUT, check_output, CalledProcessError
 
 from des.log import GLOBAL_LOGGER as logger
 
@@ -37,11 +37,14 @@ class ScriptRunner(object):
                 env_dict[str(key).upper()] = str(val)
             logger.info('Running script ' + script)
             logger.debug('Script ENV: ' + str(env_dict))
-            result = check_output(
-                script,
-                stderr=STDOUT,
-                env=env_dict
-                )
-            return str(result)
+            try:
+                result = check_output(
+                    script,
+                    stderr=STDOUT,
+                    env=env_dict,
+                    shell=True)
+                return str(result)
+            except CalledProcessError as err:
+                logger.warning('Script '+script+' Failed! Error: '+str(err))
         else:
             logger.warning('Unable to handle event! No script exists at ' + script)
