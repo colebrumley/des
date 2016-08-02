@@ -18,6 +18,7 @@ def write_script(loc):
         filehandle.close()
         chmod(loc, 0o777)
 
+
 def create_dirs(basedir):
     '''Create a generic script dir scaffold'''
     if not path.exists(basedir):
