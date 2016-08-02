@@ -45,6 +45,7 @@ class ScriptRunner(object):
                     shell=True)
                 return str(result)
             except CalledProcessError as err:
-                logger.warning('Script '+script+' Failed! Error: '+str(err))
+                logger.warning('Script '+script+' Failed! Exit Code: '+err.returncode)
+                logger.debug(err.output)
         else:
             logger.warning('Unable to handle event! No script exists at ' + script)
