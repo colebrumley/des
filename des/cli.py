@@ -3,7 +3,7 @@
 from logging import DEBUG
 from os import chmod, mkdir, path
 
-from des.__init__ import EVENT_TYPES as type_list
+from des.__init__ import EVENT_TYPES as type_list, __version__
 from des.arg import ARGPARSER as parser
 from des.log import GLOBAL_LOGGER as logger
 from des.runner import ScriptRunner
@@ -38,6 +38,10 @@ def create_dirs(basedir):
 def main():
     '''Main CLI entrypoint for des'''
     args = parser.parse_args()
+
+    if args.version:
+        print(__version__)
+        exit(0)
 
     if args.verbose:
         logger.setLevel(DEBUG)

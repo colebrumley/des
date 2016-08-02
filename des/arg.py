@@ -10,6 +10,7 @@ ARGPARSER.version = __version__
 
 ARGPARSER.add_argument(
     '-c',
+    '--create',
     dest='create',
     action='store_true',
     help='Create script dir structure and exit')
@@ -30,6 +31,13 @@ ARGPARSER.add_argument(
 
 ARGPARSER.add_argument(
     '-v',
+    '--verbose',
     dest='verbose',
     action='store_true',
     help='Verbose output')
+
+ARGPARSER.add_argument(
+    '--version',
+    dest='version',
+    action='store_true',
+    help='Print version and exit')
