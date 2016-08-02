@@ -1,4 +1,4 @@
-"""Configures logging"""
+'''Configures logging'''
 
 from logging import getLogger, Formatter, StreamHandler, INFO, DEBUG
 

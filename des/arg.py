@@ -1,4 +1,4 @@
-"""Handle CLI args"""
+'''Handle CLI args'''
 from argparse import ArgumentParser
 from des.__init__ import __version__
 

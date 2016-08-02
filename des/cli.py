@@ -1,4 +1,4 @@
-"""CLI entrypoint"""
+'''CLI entrypoint'''
 
 from logging import DEBUG
 from os import chmod, mkdir, path
@@ -29,7 +29,7 @@ def create_dirs(basedir):
 
 
 def main():
-    """Main CLI entrypoint for des"""
+    '''Main CLI entrypoint for des'''
     args = parser.parse_args()
 
     if args.verbose:

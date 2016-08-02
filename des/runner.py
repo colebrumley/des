@@ -1,4 +1,4 @@
-"""Script Runner class"""
+'''Script Runner class'''
 
 import os
 from subprocess import STDOUT, check_output, CalledProcessError
@@ -8,13 +8,13 @@ from des.util import flatten
 
 
 class ScriptRunner(object):
-    """Executes a script, passing event details via the ENV"""
+    '''Executes a script, passing event details via the ENV'''
 
     def __init__(self, path):
         self.basedir = path
 
     def run(self, event_dict):
-        """Handle a docker event"""
+        '''Handle a docker event'''
 
         script = self.basedir + os.path.sep + event_dict['Type'] + \
                  os.path.sep + str(event_dict['Action']).split(':')[0]

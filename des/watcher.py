@@ -1,4 +1,4 @@
-"""Watcher Class definition"""
+'''Watcher Class definition'''
 
 import os
 from datetime import datetime
@@ -9,7 +9,7 @@ from des.log import GLOBAL_LOGGER as logger
 
 
 class Watcher(object):
-    """Docker daemon monitor object"""
+    '''Docker daemon monitor object'''
 
     def __init__(self,
                  endpoint='unix:///var/run/docker.sock',
@@ -25,7 +25,7 @@ class Watcher(object):
             tls=tls_config)
 
     def wait_event(self, action):
-        """Wait for events"""
+        '''Wait for events'''
 
         if not callable(action):
             raise ValueError
