@@ -13,38 +13,16 @@ class Watcher(object):
 
     def __init__(self,
                  endpoint='unix:///var/run/docker.sock',
-                 http_timeout=30,
+                 http_timeout=10,
                  api_version='auto',
-                 use_tls=False,
-                 tls_client_cert=None,
-                 tls_client_key=None,
-                 tls_ca=None,
-                 tls_version=1.2,
-                 tls_verify=True,
-                 tls_check_hostname=False):
-
-        self.tls_config = False
-
-        if use_tls:
-            crt = None
-            if tls_client_cert and tls_client_key:
-                crt = (tls_client_cert, tls_client_key)
-            elif tls_client_cert:
-                crt = (tls_client_cert)
-
-            self.tls_config = docker.tls.TLSConfig(
-                client_cert=crt,
-                verify=tls_verify,
-                ssl_version=tls_version,
-                assert_hostname=tls_check_hostname,
-                ca_cert=tls_ca)
+                 tls_config=None):
 
         self.endpoint = endpoint
         self.client = docker.Client(
             base_url=endpoint,
             version=api_version,
             timeout=http_timeout,
-            tls=self.tls_config)
+            tls=tls_config)
 
     def wait_event(self, action):
         """Wait for events"""
