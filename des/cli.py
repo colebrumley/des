@@ -10,22 +10,28 @@ from des.runner import ScriptRunner
 from des.watcher import Watcher
 
 
+def write_script(loc):
+    '''Write an empty script to the filesystem'''
+    logger.info('Creating script '+ loc)
+    with open(loc, mode='x') as filehandle:
+        filehandle.write('#!/bin/sh\n')
+        filehandle.close()
+        chmod(loc, 0o777)
+
 def create_dirs(basedir):
     '''Create a generic script dir scaffold'''
     if not path.exists(basedir):
         mkdir(basedir)
+
     for key, event_ary in type_list.items():
         key_path = basedir+path.sep+key
         if not path.exists(key_path):
             mkdir(key_path)
+
         for event in event_ary:
             event_path = key_path+path.sep+event
-            logger.info('Creating script '+ event_path)
             if not path.exists(event_path):
-                with open(event_path, mode='x') as fh:
-                    fh.write('#!/bin/sh\n')
-                    fh.close()
-                    chmod(event_path, 0o777)
+                write_script(event_path)
 
 
 def main():
