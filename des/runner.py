@@ -1,22 +1,10 @@
 """Script Runner class"""
 
 import os
-import collections
 from subprocess import STDOUT, check_output, CalledProcessError
 
 from des.log import GLOBAL_LOGGER as logger
-
-
-def flatten(parent_dict, parent_key='', sep='_'):
-    '''Flatten a nested dict into a single layer'''
-    items = []
-    for key, val in parent_dict.items():
-        new_key = parent_key + sep + key if parent_key else key
-        if isinstance(val, collections.MutableMapping):
-            items.extend(flatten(val, new_key, sep=sep).items())
-        else:
-            items.append((new_key, val))
-    return dict(items)
+from des.util import flatten
 
 
 class ScriptRunner(object):
