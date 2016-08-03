@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   override:
-    - pip3 install coverage
+    - pip3 install coverage codecov
     - python3 setup.py clean
     - python3 setup.py build 
 
@@ -13,5 +13,4 @@ test:
     - python3 setup.py test
   post:
     - coverage3 run ./setup.py test
-    - coverage3 xml; cp build/coverage.xml $CIRCLE_ARTIFACTS/
-    - bash <(curl -s https://codecov.io/bash)
+    - codecov
