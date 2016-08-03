@@ -11,6 +11,4 @@ test:
   override:
     - python3 setup.py test
   post:
-    - pip3 install coverage
-    - rm .coverage; coverage3 run ./setup.py test
-    - cp .coverage $CIRCLE_ARTIFACTS/
+    - bash <(curl -s https://codecov.io/bash)
