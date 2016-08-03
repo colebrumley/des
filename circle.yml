@@ -12,5 +12,5 @@ test:
   override:
     - python3 setup.py test
   post:
-    - coverage3 run des/*.py
+    - coverage3 run setup.py test
     - codecov
