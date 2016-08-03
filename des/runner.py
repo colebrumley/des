@@ -1,7 +1,7 @@
 '''Script Runner class'''
 
 import os
-from subprocess import STDOUT, check_output, CalledProcessError
+from subprocess import STDOUT, CalledProcessError, check_output
 
 from des.log import GLOBAL_LOGGER as logger
 from des.util import flatten
@@ -33,7 +33,7 @@ class ScriptRunner(object):
                     shell=True)
                 return str(result)
             except CalledProcessError as err:
-                logger.warning('Script '+script+' Failed! Exit Code: '+err.returncode)
-                logger.debug(err.output)
+                logger.error('Script '+script+' Failed! Exit='+ \
+                             str(err.returncode)+' Message="'+str(err.output)+'"')
         else:
             logger.warning('Unable to handle event! No script exists at ' + script)
