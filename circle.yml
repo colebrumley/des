@@ -1,0 +1,12 @@
+machine:
+  python:
+    version: 3.5.2
+
+dependencies:
+  override:
+    - python3 setup.py clean
+    - python3 setup.py build 
+
+test:
+  override:
+    - python3 setup.py test
