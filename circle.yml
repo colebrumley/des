@@ -10,6 +10,3 @@ dependencies:
 test:
   override:
     - python3 setup.py test
-  post:
-    - rm .coverage; for m in cli watcher runner util; do coverage run -m des.$m -a; done
-    - cp .coverage $CIRCLE_ARTIFACTS/
