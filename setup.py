@@ -30,11 +30,11 @@ setup(
       'Intended Audience :: Developers',
       'Programming Language :: Python :: 3',
     ],
-    keywords='',
+    keywords='docker event watch monitor script',
     entry_points={
           'console_scripts': ['des=des.cli:main'],
       },
-    packages=find_packages(exclude=['docs', 'tests*', 'scripts']),
+    packages=find_packages(exclude=['docs', 'tests*', 'contrib']),
     include_package_data=True,
     author='Cole Brumley',
     install_requires=install_requires,
