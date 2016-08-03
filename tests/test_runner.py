@@ -34,8 +34,7 @@ class TestRunner(TestCase):
             'ACTOR_ATTRIBUTES_IMAGE': 'alpine'
         }
 
-        test_runner = des.runner.ScriptRunner('/tmp')
-        result = test_runner.build_env(fake_event_dict)
+        result = self.test_runner.build_env(fake_event_dict)
         self.assertDictEqual(result, anticipated_result)
 
     def test_exec(self):
