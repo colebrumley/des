@@ -1,6 +1,6 @@
 '''Script Runner class'''
 
-import os
+from os.path import sep, exists
 from subprocess import STDOUT, CalledProcessError, check_output
 
 from des.log import GLOBAL_LOGGER as logger
@@ -13,27 +13,36 @@ class ScriptRunner(object):
     def __init__(self, path):
         self.basedir = path
 
+    def exec(self, script, env):
+        try:
+            result = check_output(
+                script,
+                stderr=STDOUT,
+                env=env,
+                shell=True)
+            return result
+        except CalledProcessError as err:
+            logger.error('Script '+script+' Failed! Exit='+ \
+                         str(err.returncode)+' Message="'+str(err.output)+'"')
+
+    def build_env(self, event):
+        env_dict = dict()
+        for key, val in flatten(event).items():
+            env_dict[str(key).upper()] = str(val)
+        return env_dict
+
     def run(self, event_dict):
         '''Handle a docker event'''
 
-        script = self.basedir + os.path.sep + event_dict['Type'] + \
-                 os.path.sep + str(event_dict['Action']).split(':')[0]
-        if os.path.exists(script):
-            env_dict = dict()
-            flat_event = flatten(event_dict)
-            for key, val in flat_event.items():
-                env_dict[str(key).upper()] = str(val)
-            logger.info('Running script ' + script)
-            logger.debug('Script ENV: ' + str(env_dict))
-            try:
-                result = check_output(
-                    script,
-                    stderr=STDOUT,
-                    env=env_dict,
-                    shell=True)
-                return str(result)
-            except CalledProcessError as err:
-                logger.error('Script '+script+' Failed! Exit='+ \
-                             str(err.returncode)+' Message="'+str(err.output)+'"')
-        else:
+        script = self.basedir + sep + event_dict.get('Type') + \
+                 sep + str(event_dict.get('Action')).split(':')[0]
+
+        if exists(script) == False:
             logger.warning('Unable to handle event! No script exists at ' + script)
+            return
+        
+        env_dict = self.build_env(event_dict)
+
+        logger.info('Running script ' + script)
+        logger.debug('Script ENV: ' + str(env_dict))
+        self.exec(script, env_dict)
