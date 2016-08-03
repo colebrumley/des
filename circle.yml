@@ -4,11 +4,13 @@ machine:
 
 dependencies:
   override:
+    - pip3 install coverage
     - python3 setup.py clean
     - python3 setup.py build 
 
 test:
   override:
     - python3 setup.py test
+    - coverage3 run ./setup.py test
   post:
     - bash <(curl -s https://codecov.io/bash)
