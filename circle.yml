@@ -11,6 +11,7 @@ dependencies:
 test:
   override:
     - python3 setup.py test
-    - coverage3 run ./setup.py test
   post:
+    - coverage3 run ./setup.py test
+    - coverage3 xml; cp build/coverage.xml $CIRCLE_ARTIFACTS/
     - bash <(curl -s https://codecov.io/bash)
