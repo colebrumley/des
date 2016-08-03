@@ -13,10 +13,12 @@ class TestRunner(TestCase):
         self.test_runner = des.runner.ScriptRunner('/tmp')
 
     def test_create(self):
+        '''Make sure that TestRunneris in fact a TestRunner'''
         self.assertTrue(isinstance(self.test_runner, des.runner.ScriptRunner))
 
     def test_build_env(self):
-        fake_event_dict = {
+        '''Test docker event to environment dict translation'''
+        event_dict = {
             'status': 'start',
             'Type': 'container',
             'Actor': {
@@ -34,10 +36,11 @@ class TestRunner(TestCase):
             'ACTOR_ATTRIBUTES_IMAGE': 'alpine'
         }
 
-        result = self.test_runner.build_env(fake_event_dict)
+        result = self.test_runner.build_env(event_dict)
         self.assertDictEqual(result, anticipated_result)
 
     def test_exec(self):
+        '''Test execution'''
         result = self.test_runner.exec('/usr/bin/printenv', {'ENV_VAR_1': 'env_val_1'})
         self.assertEqual(result, bytes('ENV_VAR_1=env_val_1\nPWD='+ os.getcwd() +'\n',
                                        getdefaultencoding()))

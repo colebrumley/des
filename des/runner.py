@@ -14,6 +14,7 @@ class ScriptRunner(object):
         self.basedir = path
 
     def exec(self, script, env):
+        '''Actually execute the script/command'''
         try:
             result = check_output(
                 script,
@@ -26,6 +27,7 @@ class ScriptRunner(object):
                          str(err.returncode)+' Message="'+str(err.output)+'"')
 
     def build_env(self, event):
+        '''Translate the event dict into environment variables'''
         env_dict = dict()
         for key, val in flatten(event).items():
             env_dict[str(key).upper()] = str(val)
