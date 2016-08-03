@@ -12,5 +12,6 @@ test:
   override:
     - python3 setup.py test
   post:
+    - rm -f .coverage coverage.xml build/coverage.xml || true
     - coverage3 run setup.py test
     - codecov
