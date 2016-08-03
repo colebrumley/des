@@ -12,4 +12,5 @@ test:
     - python3 setup.py test
   post:
     - pip3 install coverage
-    - rm .coverage3; for m in cli watcher runner util; do coverage3 run -m des.$m -a; done
+    - rm .coverage; coverage3 run ./setup.py test
+    - cp .coverage $CIRCLE_ARTIFACTS/
