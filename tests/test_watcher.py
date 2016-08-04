@@ -1,8 +1,11 @@
 """Testing the Watcher class"""
 
 from unittest import TestCase
-import des
+
 import mock
+
+from .context import des
+
 
 class TestWatcher(TestCase):
     def setUp(self):

@@ -5,7 +5,7 @@ from sys import getdefaultencoding
 from unittest import TestCase
 
 # import mock
-import des
+from .context import des
 
 
 class TestRunner(TestCase):
