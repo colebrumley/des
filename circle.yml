@@ -1,4 +1,7 @@
 machine:
+  pre:
+    - pyenv install -s 2.7.11
+    - pyenv install -s 3.5.1
   post:
     - pyenv global 2.7.11 3.5.1
 
