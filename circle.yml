@@ -1,17 +1,7 @@
 machine:
-  python:
-    version: 3.5.1
-
-dependencies:
-  override:
-    - pip3 install coverage codecov
-    - python3 setup.py clean
-    - python3 setup.py build 
+  post:
+    - pyenv global 2.7.9 3.5.1
 
 test:
-  override:
-    - python3 setup.py test
   post:
-    - rm -f .coverage coverage.xml build/coverage.xml || true
-    - coverage3 run setup.py test
-    - codecov
+    - bash <(curl -s https://codecov.io/bash)
