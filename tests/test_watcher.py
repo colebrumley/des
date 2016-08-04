@@ -27,6 +27,10 @@ class TestWatcher(TestCase):
         for d in mock.call.call_list():
             action.assert_called_with(d)
 
-        # test failure case
+        # test failure cases
         with self.assertRaises(ValueError):
             self.test_watcher.wait_event(None)
+
+        with self.assertRaises(RuntimeError):
+            err_action = mock.MagicMock(side_effect=RuntimeError)
+            self.test_watcher.wait_event(err_action())
