@@ -17,10 +17,16 @@ class TestWatcher(TestCase):
             dict(Type='container', Action='die'),
             dict(Type='network', Action='create'),
             ]
+
         clmock = mock.MagicMock()
         clmock.events.return_value = iter(event_dicts)
         self.test_watcher.client = clmock
+
         action = mock.MagicMock()
         self.test_watcher.wait_event(action)
         for d in mock.call.call_list():
             action.assert_called_with(d)
+
+        # test failure case
+        with self.assertRaises(ValueError):
+            self.test_watcher.wait_event(None)
