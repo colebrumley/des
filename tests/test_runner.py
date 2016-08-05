@@ -41,6 +41,6 @@ class TestRunner(TestCase):
 
     def test_exec(self):
         '''Test execution'''
-        result = self.test_runner.exec('/usr/bin/printenv', {'ENV_VAR_1': 'env_val_1'})
+        result = self.test_runner.script_exec('/usr/bin/printenv', {'ENV_VAR_1': 'env_val_1'})
         self.assertEqual(result, bytes('ENV_VAR_1=env_val_1\nPWD='+ os.getcwd() +'\n',
                                        getdefaultencoding()))
