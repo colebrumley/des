@@ -13,13 +13,13 @@ class ScriptRunner(object):
     def __init__(self, path):
         self.basedir = path
 
-    def exec(self, script, env):
+    def exec(self, script, envarg):
         '''Actually execute the script/command'''
         try:
             result = check_output(
                 script,
                 stderr=STDOUT,
-                env=env,
+                env=envarg,
                 shell=True)
             return result
         except CalledProcessError as err:
