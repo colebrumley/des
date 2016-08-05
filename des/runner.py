@@ -13,7 +13,7 @@ class ScriptRunner(object):
     def __init__(self, path):
         self.basedir = path
 
-    def exec(self, script, envarg):
+    def script_exec(self, script, envarg):
         '''Actually execute the script/command'''
         try:
             result = check_output(
@@ -47,4 +47,4 @@ class ScriptRunner(object):
 
         logger.info('Running script ' + script)
         logger.debug('Script ENV: ' + str(env_dict))
-        self.exec(script, env_dict)
+        self.script_exec(script, env_dict)
