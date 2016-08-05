@@ -21,14 +21,13 @@ class TestWatcher(TestCase):
             dict(Type='network', Action='create'),
             ]
 
-        clmock = mock.MagicMock()
-        clmock.events.return_value = iter(event_dicts)
-        self.test_watcher.client = clmock
+        mock_docker_client = mock.MagicMock()
+        mock_docker_client.events.return_value = iter(event_dicts)
+        self.test_watcher.client = mock_docker_client
 
         action = mock.MagicMock()
         self.test_watcher.wait_event(action)
-        for d in mock.call.call_list():
-            action.assert_called_with(d)
+        action.assert_has_calls([mock.call(d) for d in event_dicts], any_order=True)
 
         # test failure cases
         with self.assertRaises(ValueError):
