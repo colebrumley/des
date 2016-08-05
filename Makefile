@@ -2,12 +2,12 @@ init:
 	test -d env || virtualenv env --no-site-packages
 	env/bin/pip install -r requirements.txt
 
-test:
+test: init
 	env/bin/tox
 	env/bin/coverage combine 
 	env/bin/coverage xml
 
-develop:
+develop: init
 	env/bin/python setup.py develop
 
 dist: init test
@@ -25,6 +25,7 @@ clean:
 		*.egg-info \
 		.tox \
 		.coverage* \
+		htmlcov \
 		coverage.xml
 
 all: init install dist
