@@ -5,7 +5,7 @@ init:
 test:
 	env/bin/tox
 	env/bin/coverage combine 
-	env/bin/coverage xml --include=*
+	env/bin/coverage xml
 
 develop:
 	env/bin/python setup.py develop
