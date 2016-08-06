@@ -3,9 +3,9 @@
 import os
 from sys import getdefaultencoding
 from unittest import TestCase
+
 import mock
 
-# import mock
 from .context import des
 
 
