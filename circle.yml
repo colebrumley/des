@@ -1,8 +1,8 @@
 machine:
   services:
     - docker
-  post:
-    - pyenv global 2.7.11 3.5.1
+  python:
+    version: 3.5.1 
 
 dependencies:
   override:
