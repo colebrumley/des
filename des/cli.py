@@ -21,8 +21,8 @@ def write_script(loc):
 
 def create_dirs(basedir):
     '''Create a generic script dir scaffold'''
-    if not path.exists(basedir):
-        mkdir(basedir)
+    if path.exists(basedir):
+        raise OSError(basedir+' exists!')
 
     for key, event_ary in type_list.items():
         key_path = basedir+path.sep+key
