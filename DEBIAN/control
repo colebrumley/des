@@ -1,5 +1,5 @@
 Package: docker-event-scripts
-Version: 0.0.3
+Version: 0.1.0
 Homepage: https://github.com/colebrumley/des
 Description: Run scripts in response to Docker events.
 Architecture: amd64

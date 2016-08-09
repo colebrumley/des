@@ -4,7 +4,7 @@ Docker Event Scripts
 [![CircleCI](https://circleci.com/gh/colebrumley/des.svg?style=svg)](https://circleci.com/gh/colebrumley/des)
 [![codecov](https://codecov.io/gh/colebrumley/des/branch/master/graph/badge.svg)](https://codecov.io/gh/colebrumley/des)
 
-version number: 0.0.3
+version number: 0.1.0
 author: Cole Brumley
 
 Overview
