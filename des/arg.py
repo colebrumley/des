@@ -26,7 +26,7 @@ ARGPARSER.add_argument(
     '-d',
     dest='script_dir',
     action='store',
-    default="/etc/docker-event.d/",
+    default="/etc/docker/events.d",
     help='Event script directory')
 
 ARGPARSER.add_argument(
