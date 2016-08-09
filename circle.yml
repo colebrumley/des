@@ -4,9 +4,19 @@ machine:
   post:
     - pyenv global 2.7.11 3.5.1
 
+general:
+  artifacts:
+    - dist
+
 dependencies:
+  cache_directories:
+    - py27/
+    - py35/
+  pre:
+    - make clean
   override:
-    - make distclean
+    - make init-py27
+    - make init-py35
 
 test:
   override:
