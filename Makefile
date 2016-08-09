@@ -1,31 +1,46 @@
-init:
-	test -d env || virtualenv env --no-site-packages
-	env/bin/pip install -r requirements.txt
+default: dist
 
-test: init
-	env/bin/tox
-	env/bin/coverage combine 
-	env/bin/coverage xml
+init-py35:
+	@echo Building Python 3.5 virtualenv
+	test -d py35 || virtualenv py35 --no-site-packages --python=python3.5
+	py35/bin/pip install -r dev-requirements.txt
+	py35/bin/python setup.py develop
 
-develop: init
-	env/bin/python setup.py develop
+init-py27:
+	@echo Building Python 2.7 virtualenv
+	test -d py27 || virtualenv py27 --no-site-packages --python=python2.7
+	py27/bin/pip install -r dev-requirements.txt
+	py27/bin/python setup.py develop
 
-dist: init test
-	env/bin/python setup.py sdist bdist_wheel
-	@echo 'Distribution tarball(s) created in dist/'
+test: init-py35
+	py35/bin/tox
 
-install: init test
-	env/bin/python setup.py install
+coverage: test
+	py35/bin/coverage combine
+	py35/bin/coverage xml
+
+dist-src: init-py35
+	py35/bin/python setup.py sdist
+
+dist-rpm: init-py27
+	contrib/build-rpm.sh
+
+dist-egg: init-py35
+	py35/bin/python setup.py bdist_wheel
+
+dist-deb: dist-src
+	contrib/build-deb.sh
+
+dist: dist-src dist-egg
+	@echo 'Distribution file(s) created in dist/'
+
+install:
+	pip install -U .
 
 clean:
-	rm -Rf \
-		env \
-		dist \
-		build \
-		*.egg-info \
-		.tox \
-		.coverage* \
-		htmlcov \
-		coverage.xml
+	rm -Rf build
 
-all: init install dist
+distclean: clean
+	rm -Rf py27 py35 __pycache__ */__pycache__ dist .tox htmlcov coverage.xml *.egg-info .coverage*
+
+ci: test coverage dist

@@ -1,0 +1,6 @@
+# Dev/Deployment
+pypi-publisher
+docker-py
+mock
+coverage
+tox

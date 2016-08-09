@@ -4,9 +4,8 @@ Requires=docker.service
 After=docker.service
 
 [Service]
-EnvironmentFile=-/etc/default/des
 Restart=on-failure
-ExecStart=/usr/local/bin/des -e $DOCKER_ENDPOINT -d $DES_BASEDIR $DES_VERBOSE 
+ExecStart=/usr/local/bin/des -d /etc/docker/events.d 
 
 [Install]
 WantedBy=multi-user.target

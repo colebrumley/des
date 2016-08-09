@@ -1,16 +1,15 @@
 machine:
   services:
     - docker
-  python:
-    version: 3.5.1 
+  post:
+    - pyenv global 2.7.11 3.5.1
 
 dependencies:
   override:
-    - make clean
-    - make init
+    - make distclean
 
 test:
   override:
-    - make test
+    - make ci
   post:
     - bash <(curl -s https://codecov.io/bash)

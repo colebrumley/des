@@ -1,0 +1,5 @@
+PACKAGE (VERSION) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Cole Brumley <cole@rm-rf-slash>  Sun, 07 Aug 2016 20:36:01 -0500

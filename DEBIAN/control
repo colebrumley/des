@@ -1,0 +1,16 @@
+Package: docker-event-scripts
+Version: 0.0.3
+Homepage: https://github.com/colebrumley/des
+Description: Run scripts in response to Docker events.
+Architecture: amd64
+Source: des
+Section: devel
+Priority: optional
+Conflicts: docker-event-scripts
+Replaces: docker-event-scripts
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 9), dh-python, python3-all, python3-setuptools
+Depends: python3-docker
+X-Python3-Version: >= 3.2
+Vcs-Bzr: lp:cole-brumley/des
+Testsuite: autopkgtest-pkg-python
