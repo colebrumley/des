@@ -38,9 +38,9 @@ install:
 	pip install -U .
 
 clean:
-	rm -Rf build
+	rm -Rf build .coverage* htmlcov coverage.xml
 
 distclean: clean
-	rm -Rf py27 py35 __pycache__ */__pycache__ dist .tox htmlcov coverage.xml *.egg-info .coverage*
+	rm -Rf py27 py35 __pycache__ */__pycache__ dist .tox *.egg-info
 
 ci: test coverage dist
