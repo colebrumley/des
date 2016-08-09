@@ -3,13 +3,13 @@ default: dist
 init-py35:
 	@echo Building Python 3.5 virtualenv
 	test -d py35 || virtualenv py35 --no-site-packages --python=python3.5
-	py35/bin/pip install -r dev-requirements.txt
+	py35/bin/pip install -r requirements.txt
 	py35/bin/python setup.py develop
 
 init-py27:
 	@echo Building Python 2.7 virtualenv
 	test -d py27 || virtualenv py27 --no-site-packages --python=python2.7
-	py27/bin/pip install -r dev-requirements.txt
+	py27/bin/pip install -r requirements.txt
 	py27/bin/python setup.py develop
 
 test: init-py35
