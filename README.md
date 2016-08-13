@@ -17,7 +17,7 @@ Installation / Usage
 
 To install use pip:
 
-    $ pip install des
+    $ pip install docker-event-scripts
 
 
 Or clone the repo:

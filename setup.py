@@ -18,7 +18,7 @@ install_requires = [x.strip() for x in all_reqs if 'git+' not in x]
 dependency_links = [x.strip().replace('git+', '') for x in all_reqs if 'git+' not in x]
 
 setup(
-    name='des',
+    name='docker-event-scripts',
     version=__version__,
     description='Run scripts in response to Docker events.',
     long_description=long_description,
@@ -39,5 +39,5 @@ setup(
     author='Cole Brumley',
     install_requires=install_requires,
     dependency_links=dependency_links,
-    author_email=''
+    author_email='cole.brumley@gmail.com'
 )
