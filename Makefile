@@ -31,6 +31,9 @@ dist-egg: init-py35
 dist: dist-src dist-egg
 	@echo 'Distribution file(s) created in dist/'
 
+pip: dist
+	py35/bin/python setup.py upload
+
 install:
 	pip install -U .
 
