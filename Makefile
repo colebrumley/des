@@ -28,9 +28,6 @@ dist-rpm: init-py27
 dist-egg: init-py35
 	py35/bin/python setup.py bdist_wheel
 
-dist-deb: dist-src
-	contrib/build-deb.sh
-
 dist: dist-src dist-egg
 	@echo 'Distribution file(s) created in dist/'
 
