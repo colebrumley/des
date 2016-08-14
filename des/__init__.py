@@ -1,6 +1,6 @@
 '''Set the version'''
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 EVENT_TYPES = {
     'container': ['attach', 'commit', 'copy', 'create', 'destroy',

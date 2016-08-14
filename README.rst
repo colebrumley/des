@@ -6,7 +6,7 @@ Docker Event Scripts
 .. image:: https://circleci.com/gh/colebrumley/des.svg?style=svg
 .. image:: https://codecov.io/gh/colebrumley/des/branch/master/graph/badge.svg
 
-**Version**: 0.1.0
+**Version**: 0.1.1
 **Author**: Cole Brumley
 
 Overview
