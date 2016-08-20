@@ -1,0 +1,4 @@
+#!/bin/sh
+# Map container name to IP in /etc/hosts
+CONTAINER_IP=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $ACTOR_ID)
+grep -o ^$CONTAINER_IP /etc/hosts || echo "$CONTAINER_IP $ACTOR_ATTRIBUTES_NAME $ACTOR_ID" >> /etc/hosts
