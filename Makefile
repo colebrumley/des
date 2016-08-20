@@ -22,6 +22,6 @@ install:
 	pip install -U .
 
 clean:
-	rm -Rf build .coverage* htmlcov coverage.xml __pycache__ */__pycache__ dist .tox *.egg-info
+	rm -Rf .cache .eggs build .coverage* htmlcov coverage.xml __pycache__ */__pycache__ dist .tox *.egg-info
 
 ci: test coverage dist

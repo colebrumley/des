@@ -9,15 +9,8 @@ general:
     - dist
 
 dependencies:
-  cache_directories:
-    - py27/
-    - py35/
-  pre:
-    - make clean
   override:
-    - make init-py27
-    - make init-py35
-
+    - make clean
 test:
   override:
     - make ci

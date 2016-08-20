@@ -24,6 +24,8 @@ def create_dirs(basedir):
     if path.exists(basedir):
         raise OSError(basedir+' exists!')
 
+    mkdir(basedir)
+
     for key, event_ary in type_list.items():
         key_path = basedir+path.sep+key
         if not path.exists(key_path):
