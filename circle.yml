@@ -11,7 +11,7 @@ general:
 dependencies:
   override:
     - make clean
-    - pip install -U tox
+    - pip install -U tox coverage
 test:
   override:
     - make ci
