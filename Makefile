@@ -1,46 +1,27 @@
 default: dist
 
-init-py35:
-	@echo Building Python 3.5 virtualenv
-	test -d py35 || virtualenv py35 --no-site-packages --python=python3.5
-	py35/bin/pip install -r requirements.txt
-	py35/bin/python setup.py develop
-
-init-py27:
-	@echo Building Python 2.7 virtualenv
-	test -d py27 || virtualenv py27 --no-site-packages --python=python2.7
-	py27/bin/pip install -r requirements.txt
-	py27/bin/python setup.py develop
-
-test: init-py35
-	py35/bin/tox
+test:
+	tox -r
 
 coverage: test
-	py35/bin/coverage combine
-	py35/bin/coverage xml
+	coverage combine
+	coverage xml
 
-dist-src: init-py35
-	py35/bin/python setup.py sdist
-
-dist-rpm: init-py27
+dist-rpm:
 	contrib/build-rpm.sh
 
-dist-egg: init-py35
-	py35/bin/python setup.py bdist_wheel
-
-dist: dist-src dist-egg
+dist:
+	python setup.py sdist
+	python setup.py bdist_egg
 	@echo 'Distribution file(s) created in dist/'
 
-pip: init-py35
-	py35/bin/python setup.py sdist upload
+pip:
+	python setup.py sdist upload
 
 install:
 	pip install -U .
 
 clean:
-	rm -Rf build .coverage* htmlcov coverage.xml
-
-distclean: clean
-	rm -Rf py27 py35 __pycache__ */__pycache__ dist .tox *.egg-info
+	rm -Rf build .coverage* htmlcov coverage.xml __pycache__ */__pycache__ dist .tox *.egg-info
 
 ci: test coverage dist
